@@ -28,7 +28,7 @@ publicKey=<pub key in hex format>
 ### Custom Command Handler
 The client utilises a custom command handler, `nostr.client.provider.CustomCommandHandler`, which implements the different relay command events: `onOk`, `onNotice`, `onError`, `onEose`, and `onEvent`.
 
-To register the custom handler, add the following entry to the `module-info.java` file:
+To register the custom handler, I add the following entry to the `module-info.java` file:
 
 ```java
 provides nostr.ws.handler.command.spi.ICommandHandler with nostr.client.provider.CustomCommandHandler;
