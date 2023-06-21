@@ -5,8 +5,8 @@
 package nostr.client.provider;
 
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import lombok.NoArgsConstructor;
-import lombok.extern.java.Log;
 import nostr.base.Command;
 import nostr.base.Relay;
 import nostr.event.BaseEvent;
@@ -20,9 +20,10 @@ import nostr.ws.handler.command.spi.ICommandHandler;
  *
  * @author eric
  */
-@Log
 @NoArgsConstructor
 public class CustomCommandHandler implements ICommandHandler {
+
+    private static final Logger log = Logger.getLogger(CustomCommandHandler.class.getName());
 
     @Override
     public void onEose(String subscriptionId, Relay relay) {

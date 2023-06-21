@@ -6,7 +6,7 @@ package nostr.client;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.logging.Level;
-import lombok.extern.java.Log;
+import java.util.logging.Logger;
 import nostr.base.PublicKey;
 import nostr.event.Kind;
 import nostr.event.impl.Filters;
@@ -24,8 +24,9 @@ import nostr.util.NostrException;
  *
  * @author eric
  */
-@Log
 public class NostrClient {
+    
+    private static final Logger log = Logger.getLogger(NostrClient.class.getName());
 
     public static void main(String[] args) throws NostrException {
 
@@ -42,9 +43,6 @@ public class NostrClient {
 
         // Send a message
         send(client, args[1]);
-
-        // Exit
-        System.exit(0);
     }
 
     private static void send(Client client, String content) throws NostrException {
