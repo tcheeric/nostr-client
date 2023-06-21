@@ -19,7 +19,7 @@ relay_nostrview=relay.nostrview.com
 ```
 
 ```properties
-privateKey=<privé key in hex format>
+privateKey=<private key in hex format>
 publicKey=<pub key in hex format>
 ```
 
