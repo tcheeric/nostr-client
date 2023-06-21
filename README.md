@@ -1,6 +1,6 @@
 # nostr-client
 
-This is a test application for the nostr-client, utilizing the nostr-java library.
+This is a test application to demo the nostr-java library.
 
 ## Setup
 
