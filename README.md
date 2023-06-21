@@ -1,49 +1,6 @@
 # nostr-client
 
-A nostr client test application that uses the nostr-java library
-
-## Setup
-
-Create the files relays.properties and profile.properties in the $HOME/.nostr-java folder
-
-The file relays.properties contains the list of relays to connect to.
-Syntax:
-relay_<identifier>=relay URI
-
-Example:
-relay_global=global.relay.red
-relay_nostrview=relay.nostrview.com
-
-The file profile.properties contains the private and public keys, in hex format, used for signing messages
-Example:
-privateKey=21ecb5527696.....42e2b6b3712dba96fe4
-publickKey=62d05a3e2....2ec06b91156d1504b154d615a5928
-
-## The code
-
-Objective: nostr-client sends a REQ-message to the relay and publishes a text note.
-
-nostr-java is built in a modular way, and nostr-client is plugged onto it.
-
-The client declares a custom command handler, nostr.client.provider.CustomCommandHandler, that implements the different relay command events onOk, onNotice, onError, onEose, and onEvent.
-
-The client declares the custom handler in the module-info.java file.
-
-    provides nostr.ws.handler.command.spi.ICommandHandler with nostr.client.provider.CustomCommandHandler;
-
-## Compiling and running the code
-Use maven to build the project in your IDE
-
-The application expects two parameters, a public key in hex format and a note content as second parameter.
-
-The application submits a filter request to the relay to fetch all notes from the provided public key, that were submitted in the last 5 minutes.
-
-The application publishes a note with the content provided.
-
-Example: 
-# nostr-client
-
-This is a test application for the nostr-client, utilizing the powerful nostr-java library.
+This is a test application for the nostr-client, utilizing the nostr-java library.
 
 ## Setup
 
