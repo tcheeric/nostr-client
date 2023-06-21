@@ -36,6 +36,9 @@ public class NostrClient {
         
         // Send a message
         send(client, args[1]);
+        
+        // Exit
+        System.exit(0);
     }
 
     private static void send(Client client, String content) throws NostrException {
