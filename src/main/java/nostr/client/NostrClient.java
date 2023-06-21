@@ -28,15 +28,21 @@ import nostr.util.NostrException;
 public class NostrClient {
 
     public static void main(String[] args) throws NostrException {
-        Client client = createClient();
+
+        if (args.length != 2) {
+            log.log(Level.SEVERE, "Invalid argument count");
+            System.exit(-1);
+        }
         
+        Client client = createClient();
+
         // Send a filter request. The results will be published in your custom command handler's onEvent method
         PublicKey recipient = new PublicKey(args[0]);
         filter(client, recipient);
-        
+
         // Send a message
         send(client, args[1]);
-        
+
         // Exit
         System.exit(0);
     }
@@ -50,7 +56,7 @@ public class NostrClient {
         // Create the event
         var event = new TextNoteEvent(sender, new ArrayList<>(), content);
         identity.sign(event);
-        
+
         // Send the message
         GenericMessage message = new EventMessage(event);
         client.send(message);
