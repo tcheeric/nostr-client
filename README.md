@@ -19,7 +19,6 @@ relay_nostrview=relay.nostrview.com
 ```
 
 ```properties
-# Syntax relay_<identifier>=<relay URI>
 privateKey=<privé key in hex format>
 publicKey=<pub key in hex format>
 ```
