@@ -60,7 +60,7 @@ public class NostrClient {
         client.send(message);
     }
 
-    public static Client createClient() {
+    private static Client createClient() {
         final var client = Client.getInstance();
 
         do {
