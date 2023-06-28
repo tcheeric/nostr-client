@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import nostr.base.PublicKey;
+import nostr.event.BaseMessage;
 import nostr.event.Kind;
 import nostr.event.impl.Filters;
-import nostr.event.impl.GenericMessage;
 import nostr.event.impl.TextNoteEvent;
 import nostr.event.list.KindList;
 import nostr.event.list.PublicKeyList;
@@ -56,7 +56,7 @@ public class NostrClient {
         identity.sign(event);
 
         // Send the message
-        GenericMessage message = new EventMessage(event);
+        BaseMessage message = new EventMessage(event);
         client.send(message);
     }
 
@@ -89,7 +89,7 @@ public class NostrClient {
 
         log.log(Level.INFO, "Filters: {0}", filters);
 
-        GenericMessage message = new ReqMessage("nostr-bot", filters);
+        BaseMessage message = new ReqMessage("nostr-bot", filters);
 
         log.log(Level.INFO, "Sending message {0}", message);
         client.send(message);
