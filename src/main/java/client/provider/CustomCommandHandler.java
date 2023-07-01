@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package nostr.client.provider;
+package client.provider;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lombok.NoArgsConstructor;
 import nostr.base.Command;
 import nostr.base.Relay;
+import nostr.client.Client;
 import nostr.event.BaseEvent;
 import nostr.event.json.codec.BaseEventDecoder;
-import nostr.id.Client;
 import nostr.id.Identity;
 import nostr.util.NostrException;
 import nostr.ws.handler.command.spi.ICommandHandler;

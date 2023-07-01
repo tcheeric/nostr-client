@@ -9,6 +9,7 @@ module NostrClient {
     requires nostr.ws.handler;
     requires nostr.util;
     requires nostr.base;
+    requires nostr.client;
     requires nostr.crypto;
     requires nostr.event;
     requires nostr.id;
@@ -43,9 +44,9 @@ module NostrClient {
     
     requires org.bouncycastle.provider;
 
-    exports nostr.client;
-    exports nostr.client.provider;
+    exports client;
+    exports client.provider;
       
-    provides nostr.ws.handler.command.spi.ICommandHandler with nostr.client.provider.CustomCommandHandler;
+    provides nostr.ws.handler.command.spi.ICommandHandler with client.provider.CustomCommandHandler;
 
 }

@@ -1,13 +1,15 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-package nostr.client;
+package client;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import nostr.base.PublicKey;
+import nostr.client.Client;
+import nostr.client.Client;
 import nostr.event.BaseMessage;
 import nostr.event.Kind;
 import nostr.event.impl.Filters;
@@ -16,7 +18,6 @@ import nostr.event.list.KindList;
 import nostr.event.list.PublicKeyList;
 import nostr.event.message.EventMessage;
 import nostr.event.message.ReqMessage;
-import nostr.id.Client;
 import nostr.id.Identity;
 import nostr.util.NostrException;
 
