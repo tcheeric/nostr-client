@@ -1,20 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package client.provider;
+
+import lombok.NoArgsConstructor;
+import nostr.api.Nostr;
+import nostr.base.Command;
+import nostr.base.Relay;
+import nostr.event.BaseEvent;
+import nostr.util.NostrException;
+import nostr.ws.handler.command.spi.ICommandHandler;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import lombok.NoArgsConstructor;
-import nostr.base.Command;
-import nostr.base.Relay;
-import nostr.client.Client;
-import nostr.event.BaseEvent;
-import nostr.event.json.codec.BaseEventDecoder;
-import nostr.id.Identity;
-import nostr.util.NostrException;
-import nostr.ws.handler.command.spi.ICommandHandler;
 
 /**
  *
@@ -53,15 +48,9 @@ public class CustomCommandHandler implements ICommandHandler {
     @Override
     public void onAuth(String challenge, Relay relay) throws NostrException {
         log.log(Level.INFO, "Command: {0} - Challenge: {1} - Relay {3}", new Object[]{Command.AUTH, challenge, relay});
-
-        var client = Client.getInstance();
-        var identity = Identity.getInstance();
-
-        client.auth(identity, challenge, relay);
     }
 
     private BaseEvent unmarshallEvent(String jsonEvent) throws NostrException {
-        var decoder = new BaseEventDecoder(jsonEvent);
-        return decoder.decode();
+        return Nostr.Json.decodeEvent(jsonEvent);
     }
 }

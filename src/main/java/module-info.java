@@ -4,7 +4,8 @@
  */
 
 module NostrClient {
-    
+
+    requires nostr.api;
     requires nostr.ws.handler.command.provider;
     requires nostr.ws.handler;
     requires nostr.util;
