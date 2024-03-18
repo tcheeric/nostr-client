@@ -5,6 +5,16 @@ This is a demo nostr client application using the **nostr-java** library, implem
 
 ## Writing the Client Code
 
+### Maven dependency
+To use the **nostr-java** library in your project, add the following dependency to your `pom.xml` file:
+```xml
+        <dependency>
+            <groupId>nostr-java</groupId>
+            <artifactId>nostr-java-api</artifactId>
+            <version>${nostr-java-version}</version>
+        </dependency>
+```
+
 ### Custom Command Handler
 The client provides a custom command handler, `client.provider.CustomCommandHandler`, for overriding the default behaviour for the `onOk`, `onNotice`, `onError`, `onEose`, and `onEvent` relay events.
 
