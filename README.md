@@ -3,25 +3,6 @@
 
 This is a demo nostr client application using the **nostr-java** library, and implemented as a java module.
 
-## Setup
-
-Before using the **nostr-client**, you need to perform some setup steps:
-
-1. Create the folder `$HOME/.nostr-java` and add the following files:
-  - `relays.properties`: for list of relays to connect to.
-  
-```properties
-#Syntax relay_[identifier]=[relay URI]
-relay_global=global.relay.red
-relay_nostrview=relay.nostrview.com
-```
-
-   - `profile.properties`: for the private and public keys used for signing messages.
-   ```properties
-privateKey=<private key in hex format>
-publicKey=<pub key in hex format>
-```
-
 ## Writing the Client Code
 
 ### Custom Command Handler
