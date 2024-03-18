@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>nostr-client</groupId>
     <artifactId>nostr-client</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
     <build>
         <plugins>
@@ -20,9 +20,9 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>com.github.tcheeric.nostr-java</groupId>
+            <groupId>nostr-java</groupId>
             <artifactId>nostr-java-api</artifactId>
-            <version>v0.004.01</version>
+            <version>0.4-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <repositories>

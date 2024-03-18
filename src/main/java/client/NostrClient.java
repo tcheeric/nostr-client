@@ -5,15 +5,18 @@ package client;
 
 import nostr.api.NIP01;
 import nostr.api.NIP04;
-import nostr.api.Nostr;
+import nostr.api.NIP44;
 import nostr.event.BaseTag;
+import nostr.event.impl.DirectMessageEvent;
+import nostr.event.impl.EncryptedPayloadEvent;
+import nostr.event.impl.TextNoteEvent;
 import nostr.event.list.PublicKeyList;
 import nostr.id.Identity;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
- *
  * @author eric
  */
 public class NostrClient {
@@ -25,34 +28,32 @@ public class NostrClient {
 
     private static void send() {
 
-        // Create the event with the default identity
-        var event = NIP01.createTextNoteEvent("Hello Nostr World!");
-        Nostr.sign(event);
-        Nostr.send(event);
+        var relays = Map.of("local relay", "ws://localhost:5555/", "nostr band", "wss://relay.nostr.band/");
+        // Create the event with the default identity, sign and send to the default relay
+        var sender = Identity.getInstance();
+        NIP01<TextNoteEvent> nip01 = new NIP01<>(sender);
+        nip01.createTextNoteEvent("Hello Nostr World!").sign().send();
 
         // Create an event with a specific identity
-        final Identity identity = Identity.getInstance();
-        event = NIP01.createTextNoteEvent(identity, "Bonjour Nostr Monde!");
-        Nostr.sign(event);
-        Nostr.send(event);
+        sender = Identity.generateRandomIdentity();
+        var nip01_ = new NIP01<>(sender);
+        nip01_.createTextNoteEvent("Bonjour Nostr Monde!").addTag(NIP01.createEventTag(nip01.getEvent().getId())).signAndSend();
 
-        // Create an event with a specific identity and tags
+        // Create an event with a random identity and tags, sign and send to the default relay
         var recipient = NIP01.createPubKeyTag(Identity.generateRandomIdentity().getPublicKey());
-        var tags = new ArrayList<BaseTag>();
-        tags.add(recipient);
-        event = NIP01.createTextNoteEvent(identity, tags, "Hola Nostr Mundo!");
-        Nostr.sign(event);
-        Nostr.send(event);
+        nip01.createTextNoteEvent("Hola Nostr Mundo!").setRecipient(Identity.generateRandomIdentity().getPublicKey()).signAndSend();
 
         // Send a DM
-        var directMessageEvent = NIP04.createDirectMessageEvent(Identity.generateRandomIdentity().getPublicKey(), "Guten Tag Nostr Welt!");
-        Nostr.sign(directMessageEvent);
-        Nostr.send(directMessageEvent);
+        var nip04 = new NIP04<DirectMessageEvent>(sender, recipient.getPublicKey());
+        nip04.createDirectMessageEvent("Guten Tag Nostr Welt!").signAndSend(relays);
+
+        var nip44 = new NIP44<EncryptedPayloadEvent>(sender, recipient.getPublicKey());
+        nip44.createDirectMessageEvent("Ciao Nostr Mondo!").signAndSend(relays);
 
         // Create a filter
         PublicKeyList authors = new PublicKeyList();
-        authors.add(identity.getPublicKey());
+        authors.add(sender.getPublicKey());
         var filter = NIP01.createFilters(null, authors, null, null, null, null, null, 20, null);
-        Nostr.send(filter);
+        nip01.setRelays(relays).send(filter, "subscription_" + sender.getPublicKey().toString());
     }
 }

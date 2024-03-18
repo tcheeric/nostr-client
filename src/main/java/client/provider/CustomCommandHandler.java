@@ -4,7 +4,6 @@ import lombok.NoArgsConstructor;
 import nostr.api.Nostr;
 import nostr.base.Command;
 import nostr.base.Relay;
-import nostr.event.BaseEvent;
 import nostr.util.NostrException;
 import nostr.ws.handler.command.spi.ICommandHandler;
 
@@ -12,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author eric
  */
 @NoArgsConstructor
@@ -35,22 +33,20 @@ public class CustomCommandHandler implements ICommandHandler {
         log.log(Level.WARNING, "Command: {0} - Message: {1}", new Object[]{Command.NOTICE, message});
     }
 
+    /**
+     * Log the event received from the relay
+     * @param jsonEvent the event
+     * @param subId the subscription id
+     * @param relay the relay
+     */
     @Override
     public void onEvent(String jsonEvent, String subId, Relay relay) {
-        try {
-            var event = unmarshallEvent(jsonEvent);
-            log.log(Level.INFO, "Event {0} received from relay {1} with subscription id {2}", new Object[]{event, relay, subId});
-        } catch (NostrException ex) {
-            throw new RuntimeException(ex);
-        }
+        var event = Nostr.Json.decodeEvent(jsonEvent);
+        log.log(Level.INFO, "Event {0} received from relay {1} with subscription id {2}", new Object[]{event, relay, subId});
     }
 
     @Override
-    public void onAuth(String challenge, Relay relay) throws NostrException {
+    public void onAuth(String challenge, Relay relay) {
         log.log(Level.INFO, "Command: {0} - Challenge: {1} - Relay {3}", new Object[]{Command.AUTH, challenge, relay});
-    }
-
-    private BaseEvent unmarshallEvent(String jsonEvent) throws NostrException {
-        return Nostr.Json.decodeEvent(jsonEvent);
     }
 }
