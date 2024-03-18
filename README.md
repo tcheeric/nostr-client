@@ -6,15 +6,15 @@ This is a demo nostr client application using the **nostr-java** library, implem
 ## Writing the Client Code
 
 ### Custom Command Handler
-The client provides a custom command handler, `client.provider.CustomCommandHandler`, for implementing a custom behaviour for the `onOk`, `onNotice`, `onError`, `onEose`, and `onEvent` relay events, overriding the existing default command handler.
+The client provides a custom command handler, `client.provider.CustomCommandHandler`, for overriding the default behaviour for the `onOk`, `onNotice`, `onError`, `onEose`, and `onEvent` relay events.
 
 To register the custom command handler:
 
-1. Add the following entry to the `module-info.java` file:
+1. I add the following entry to the `module-info.java` file:
 ```java
 provides nostr.ws.handler.command.spi.ICommandHandler with client.provider.CustomCommandHandler;
 ```
-2. You will also need to create the file `sr/main/resources/META-INF/services/nostr.ws.handler.command.spi.ICommandHandler` with the content:
+2. I also need to create the file `sr/main/resources/META-INF/services/nostr.ws.handler.command.spi.ICommandHandler` with the content:
 
 ```java
 client.provider.CustomCommandHandler
