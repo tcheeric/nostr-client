@@ -1,7 +1,7 @@
 
 # nostr-client
 
-This is a demo nostr client application using the **nostr-java** library, and implemented as a java module.
+This is a demo nostr client application using the **nostr-java** library, implemented as a java module.
 
 ## Writing the Client Code
 
