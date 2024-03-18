@@ -6,7 +6,7 @@ This is a demo nostr client application using the **nostr-java** library, implem
 ## Writing the Client Code
 
 ### Maven dependency
-To use the **nostr-java** library in your project, add the following dependency to your `pom.xml` file:
+To use the **nostr-java** library in the project, I add the following dependency to the `pom.xml` file:
 ```xml
         <dependency>
             <groupId>nostr-java</groupId>
@@ -31,9 +31,9 @@ client.provider.CustomCommandHandler
 ```
 
 ## Compiling and Running the Code
-To compile and run the **nostr-client** application, follow these steps:
+To compile and run the **nostr-client** application, I follow these steps:
 
- - Build the project using Maven in your preferred IDE.
+ - Build the project using Maven in my preferred IDE.
  - Run the application using the following command:
 ```
 java -jar nostr-client.jar 
