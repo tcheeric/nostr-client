@@ -6,6 +6,7 @@ package client;
 import nostr.api.NIP01;
 import nostr.api.NIP04;
 import nostr.api.NIP44;
+import nostr.base.PrivateKey;
 import nostr.event.BaseTag;
 import nostr.event.impl.DirectMessageEvent;
 import nostr.event.impl.EncryptedPayloadEvent;
@@ -29,8 +30,9 @@ public class NostrClient {
     private static void send() {
 
         var relays = Map.of("local relay", "ws://localhost:5555/", "nostr band", "wss://relay.nostr.band/");
+
         // Create the event with the default identity, sign and send to the default relay
-        var sender = Identity.getInstance();
+        var sender = Identity.getInstance(PrivateKey.generateRandomPrivKey());
         NIP01<TextNoteEvent> nip01 = new NIP01<>(sender);
         nip01.createTextNoteEvent("Hello Nostr World!").sign().send();
 
@@ -40,6 +42,7 @@ public class NostrClient {
         nip01_.createTextNoteEvent("Bonjour Nostr Monde!").addTag(NIP01.createEventTag(nip01.getEvent().getId())).signAndSend();
 
         // Create an event with a random identity and tags, sign and send to the default relay
+        sender = Identity.getInstance(new PrivateKey("8c26b94af1a35b5e47ee2555f98602237767747e79c91909c61963e49140f46f"));
         var recipient = NIP01.createPubKeyTag(Identity.generateRandomIdentity().getPublicKey());
         nip01.createTextNoteEvent("Hola Nostr Mundo!").setRecipient(Identity.generateRandomIdentity().getPublicKey()).signAndSend();
 
