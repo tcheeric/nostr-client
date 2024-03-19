@@ -9,6 +9,7 @@ import nostr.api.NIP44;
 import nostr.base.PrivateKey;
 import nostr.event.impl.DirectMessageEvent;
 import nostr.event.impl.EncryptedPayloadEvent;
+import nostr.event.impl.Filters;
 import nostr.event.impl.TextNoteEvent;
 import nostr.event.list.PublicKeyList;
 import nostr.id.Identity;
@@ -27,7 +28,7 @@ public class NostrClient {
 
     private static void send() {
 
-        var relays = Map.of("local relay", "ws://localhost:5555/", "nostr band", "wss://relay.nostr.band/");
+        var relays = Map.of("local relay", "ws://localhost:5555/");
 
         // Create the event with a random identity, sign and send to the relays
         var sender = Identity.getInstance(PrivateKey.generateRandomPrivKey());
@@ -55,7 +56,7 @@ public class NostrClient {
         // Create a filter
         PublicKeyList authors = new PublicKeyList();
         authors.add(sender.getPublicKey());
-        var filter = NIP01.createFilters(null, authors, null, null, null, null, null, 20, null);
-        nip01.setRelays(relays).send(filter, "subscription_" + sender.getPublicKey().toString());
+        var filters = Filters.builder().authors(authors).build();
+        nip01.setRelays(relays).send(filters, "subscription_" + sender.getPublicKey().toString());
     }
 }

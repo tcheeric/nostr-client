@@ -4,7 +4,6 @@ import lombok.NoArgsConstructor;
 import nostr.api.Nostr;
 import nostr.base.Command;
 import nostr.base.Relay;
-import nostr.util.NostrException;
 import nostr.ws.handler.command.spi.ICommandHandler;
 
 import java.util.logging.Level;
