@@ -51,11 +51,8 @@ module NostrClient {
 2. I also need to create the file `sr/main/resources/META-INF/services/nostr.command.CommandHandler` with the content:
 
 ```java
-
-import client.provider.OKCustomHandler;
-
 client.provider.EventCustomHandler
-        CustomNoticeCustomCommandHandler
+client.provider.NoticeCustomHandler
 client.provider.OKCustomHandler
 ```
 
