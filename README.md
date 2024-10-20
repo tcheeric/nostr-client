@@ -54,6 +54,7 @@ module NostrClient {
 client.provider.EventCustomHandler
 client.provider.NoticeCustomHandler
 client.provider.OKCustomHandler
+client.provider.EoseCustomHandler
 ```
 
 ## Compiling and Running the Code

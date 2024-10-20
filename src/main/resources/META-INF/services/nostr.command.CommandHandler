@@ -1,3 +1,4 @@
 client.provider.EventCustomHandler
 client.provider.NoticeCustomHandler
 client.provider.OKCustomHandler
+client.provider.EoseCustomHandler
