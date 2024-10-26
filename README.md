@@ -47,7 +47,7 @@ module NostrClient {
     provides nostr.command.CommandHandler with EventCustomHandler, OKCustomHandler, NoticeCustomHandler, EoseCustomHandler;
 }
 ```
-2. I also need to create the file `sr/main/resources/META-INF/services/nostr.command.CommandHandler` with the content:
+2. I also need to create the file `src/main/resources/META-INF/services/nostr.command.CommandHandler` with the content:
 
 ```java
 client.provider.EventCustomHandler
