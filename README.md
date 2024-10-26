@@ -1,4 +1,3 @@
-
 # nostr-client
 
 This is a demo nostr client application using the **nostr-java** library, implemented as a java module.
@@ -28,15 +27,15 @@ The library is currently hosted in the jitpack.io repository
 ```
 
 ### Custom Command Handler
-The client provides the custom command handlers to override the default behaviours for the `onOk`, `onNotice`, `onError`, `onEose`, and `onEvent` relay events.
+The client provides custom command handlers for the `Ok`, `Notice`, `Error`, `Eose`, and `Event` events, in replacement of the default OOTB dummy command handlers.
 
 To register the custom command handlers:
 
 1. I add the following entry to the `module-info.java` file:
 
 ```java
+import client.provider.EoseCustomHandler;
 import client.provider.EventCustomHandler;
-client.provider.NoticeCustomHandler;
 import client.provider.NoticeCustomHandler;
 import client.provider.CustomOKCommandHandler;
 import client.provider.OKCustomHandler;
@@ -45,7 +44,7 @@ import client.provider.OKCustomHandler;
 module NostrClient {
     ...
 
-    provides nostr.command.CommandHandler with EventCustomHandler, OKCustomHandler, NoticeCustomHandler;
+    provides nostr.command.CommandHandler with EventCustomHandler, OKCustomHandler, NoticeCustomHandler, EoseCustomHandler;
 }
 ```
 2. I also need to create the file `sr/main/resources/META-INF/services/nostr.command.CommandHandler` with the content:
@@ -58,9 +57,9 @@ client.provider.EoseCustomHandler
 ```
 
 ## Compiling and Running the Code
-To compile and run the **nostr-client** application, I follow these steps:
+To compile and run the **nostr-client** application, follow these steps:
 
- - Build the project using Maven in my preferred IDE.
+ - Build the project using Maven in your preferred IDE.
  - Run the application using the following command:
 ```
 java -jar nostr-client.jar 

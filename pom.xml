@@ -20,19 +20,19 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>xyz.nostrj</groupId>
+            <groupId>xyz.tcheeric</groupId>
             <artifactId>nostr-java-api</artifactId>
             <version>0.6.2-SNAPSHOT</version>
         </dependency>
     </dependencies>
-<!--
+
     <repositories>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
--->
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>22</maven.compiler.source>
